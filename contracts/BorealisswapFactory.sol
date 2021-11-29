@@ -1,10 +1,10 @@
 pragma solidity =0.5.16;
 
-import './interfaces/IPepeswapFactory.sol';
-import './PepeswapPair.sol';
+import './interfaces/IBorealisswapFactory.sol';
+import './BorealisswapPair.sol';
 
-contract PepeswapFactory is IPepeswapFactory {
-    bytes32 public constant INIT_CODE_PAIR_HASH = keccak256(abi.encodePacked(type(PepeswapPair).creationCode));
+contract BorealisswapFactory is IBorealisswapFactory {
+    bytes32 public constant INIT_CODE_PAIR_HASH = keccak256(abi.encodePacked(type(BorealisswapPair).creationCode));
 
     address public feeTo;
     address public feeToSetter;
@@ -23,16 +23,16 @@ contract PepeswapFactory is IPepeswapFactory {
     }
 
     function createPair(address tokenA, address tokenB) external returns (address pair) {
-        require(tokenA != tokenB, 'Pepeswap: IDENTICAL_ADDRESSES');
+        require(tokenA != tokenB, 'Borealisswap: IDENTICAL_ADDRESSES');
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
-        require(token0 != address(0), 'Pepeswap: ZERO_ADDRESS');
-        require(getPair[token0][token1] == address(0), 'Pepeswap: PAIR_EXISTS'); // single check is sufficient
-        bytes memory bytecode = type(PepeswapPair).creationCode;
+        require(token0 != address(0), 'Borealisswap: ZERO_ADDRESS');
+        require(getPair[token0][token1] == address(0), 'Borealisswap: PAIR_EXISTS'); // single check is sufficient
+        bytes memory bytecode = type(BorealisswapPair).creationCode;
         bytes32 salt = keccak256(abi.encodePacked(token0, token1));
         assembly {
             pair := create2(0, add(bytecode, 32), mload(bytecode), salt)
         }
-        IPepeswapPair(pair).initialize(token0, token1);
+        IBorealisswapPair(pair).initialize(token0, token1);
         getPair[token0][token1] = pair;
         getPair[token1][token0] = pair; // populate mapping in the reverse direction
         allPairs.push(pair);
@@ -40,12 +40,12 @@ contract PepeswapFactory is IPepeswapFactory {
     }
 
     function setFeeTo(address _feeTo) external {
-        require(msg.sender == feeToSetter, 'Pepeswap: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'Borealisswap: FORBIDDEN');
         feeTo = _feeTo;
     }
 
     function setFeeToSetter(address _feeToSetter) external {
-        require(msg.sender == feeToSetter, 'Pepeswap: FORBIDDEN');
+        require(msg.sender == feeToSetter, 'Borealisswap: FORBIDDEN');
         feeToSetter = _feeToSetter;
     }
 }

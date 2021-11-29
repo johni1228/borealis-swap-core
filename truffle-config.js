@@ -2,7 +2,7 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
 
 //const BSC_DEPLOYER_KEY = process.env.BSC_DEPLOYER_KEY;
-//const BSC_TESTNET_DEPLOYER_KEY = process.env.BSC_TESTNET_DEPLOYER_KEY;
+// const BSC_TESTNET_DEPLOYER_KEY = process.env.BSC_TESTNET_DEPLOYER_KEY;
 
 module.exports = {
   networks: {
@@ -12,18 +12,20 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
     },
     testnet: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://data-seed-prebsc-1-s1.binance.org:8545`, 0, 10),
-      network_id: 97,
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://testnet.aurora.dev`, 0, 10),
+      network_id: 0x4e454153,
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true,
+      from: '0x8A1eAA7f43D44D06ac1b7677FD6B979538EBc652'
     },
-    bsc: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://bsc-dataseed1.binance.org`),
-      network_id: 56,
+    aurora: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://mainnet.aurora.dev`),
+      network_id: 0x4e454152,
       confirmations: 10,
       timeoutBlocks: 200,
-      skipDryRun: true
+      skipDryRun: true,
+      from: '0x8A1eAA7f43D44D06ac1b7677FD6B979538EBc652'
     },
   },
   plugins: [
