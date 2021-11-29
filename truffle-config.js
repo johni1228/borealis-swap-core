@@ -12,7 +12,7 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
     },
     testnet: {
-      provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://testnet.aurora.dev`, 0, 10),
+      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, `https://testnet.aurora.dev`, 0, 10)},
       network_id: 0x4e454153,
       confirmations: 10,
       timeoutBlocks: 200,
