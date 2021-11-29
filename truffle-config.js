@@ -1,6 +1,6 @@
 var HDWalletProvider = require('@truffle/hdwallet-provider');
 require('dotenv').config();
-
+const mnemonic = process.env.MNEMONIC;
 //const BSC_DEPLOYER_KEY = process.env.BSC_DEPLOYER_KEY;
 // const BSC_TESTNET_DEPLOYER_KEY = process.env.BSC_TESTNET_DEPLOYER_KEY;
 
@@ -12,7 +12,7 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
     },
     testnet: {
-      provider: () => { return new HDWalletProvider(process.env.MNEMONIC, `https://testnet.aurora.dev/`)},
+      provider: () => new HDWalletProvider(mnemonic, `https://testnet.aurora.dev/`),
       network_id: 131316555,
       confirmations: 10,
       timeoutBlocks: 200,
