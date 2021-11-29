@@ -169,7 +169,7 @@ contract BorealisswapPair is IBorealisswapPair, BorealisswapERC20 {
         require(to != _token0 && to != _token1, 'Borealisswap: INVALID_TO');
         if (amount0Out > 0) _safeTransfer(_token0, to, amount0Out); // optimistically transfer tokens
         if (amount1Out > 0) _safeTransfer(_token1, to, amount1Out); // optimistically transfer tokens
-        if (data.length > 0) IBorealisswapCallee(to).BorealisswapCall(msg.sender, amount0Out, amount1Out, data);
+        if (data.length > 0) IBorealisswapCallee(to).borealisswapCall(msg.sender, amount0Out, amount1Out, data);
         balance0 = IERC20(_token0).balanceOf(address(this));
         balance1 = IERC20(_token1).balanceOf(address(this));
         }
