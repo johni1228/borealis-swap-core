@@ -20,9 +20,7 @@ module.exports = {
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true,
-      from: '0x8A1eAA7f43D44D06ac1b7677FD6B979538EBc652',
-      gasPrice: 3000000000
-
+      from: '0x8A1eAA7f43D44D06ac1b7677FD6B979538EBc652'
     },
     aurora: {
       provider: () => new HDWalletProvider(process.env.MNEMONIC, `https://mainnet.aurora.dev`),
