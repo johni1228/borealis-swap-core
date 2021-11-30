@@ -19,6 +19,7 @@ module.exports = {
       network_id: 1313161555,
       confirmations: 10,
       timeoutBlocks: 200,
+      gas: 10000000,
       skipDryRun: true,
       from: '0x8A1eAA7f43D44D06ac1b7677FD6B979538EBc652'
     },
