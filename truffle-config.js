@@ -1,6 +1,9 @@
 var HDWalletProvider = require('@truffle/hdwallet-provider');
-require('dotenv').config();
-const mnemonic = process.env.MNEMONIC;
+
+const fs = require('fs');
+const mnemonic = fs.readFileSync(".secret").toString().trim();
+
+console.log('mnemonic = ', mnemonic);
 //const BSC_DEPLOYER_KEY = process.env.BSC_DEPLOYER_KEY;
 // const BSC_TESTNET_DEPLOYER_KEY = process.env.BSC_TESTNET_DEPLOYER_KEY;
 
