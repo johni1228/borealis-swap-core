@@ -16,7 +16,7 @@ module.exports = {
     },
     testnet: {
       provider: () => new HDWalletProvider(mnemonic, `https://testnet.aurora.dev/`),
-      network_id: 131316555,
+      network_id: 1313161555,
       confirmations: 10,
       timeoutBlocks: 200,
       skipDryRun: true,
